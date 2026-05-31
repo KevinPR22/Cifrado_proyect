@@ -14,8 +14,8 @@ def registrar_evento(accion: str, detalle: str):
     print(f"[{ahora}] [CORE-CRYPTO] {accion.upper()} -> {detalle}")
 
 def clave_a_ascii(clave: str) -> list[int]:
-    """Transforma la clave en valores ASCII."""
-    return [ord(c) for c in clave]
+    """Transforma la clave en sus bytes UTF-8 (siempre 0-255, soporta cualquier Unicode)."""
+    return list(clave.encode('utf-8'))
 
 def aplicar_padding(valores_ascii: list[int], longitud: int = 32) -> list[int]:
     """Completa el arreglo mediante repetición cíclica hasta alcanzar 32 bytes (AES-256)."""
